@@ -86,6 +86,7 @@ public class KisiController {
 		k1.setSoyad(kisi.getSoyad());
 		k1.setE_posta(kisi.getE_posta());
 		k1.setAdres(kisi.getAdres());
+
 	}
 	
 	public String KisiSil(){

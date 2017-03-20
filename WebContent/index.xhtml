@@ -24,14 +24,12 @@
 									<h:dataTable class="table table-striped table-bordered"
 										value="#{KisiController.kisiler}" var="kisi">
 										<h:column>
-											<h:form>
-												<h:commandButton class="btn btn-info" value="DETAY"
-													action="kisidetay">
-													<f:setPropertyActionListener value="#{kisi.id}"
-														target="#{KisiController.k1.id}">
-													</f:setPropertyActionListener>
-												</h:commandButton>
-											</h:form>
+											<h:commandButton class="btn btn-info" value="DETAY"
+												action="kisidetay">
+												<f:setPropertyActionListener value="#{kisi.id}"
+													target="#{KisiController.k1.id}">
+												</f:setPropertyActionListener>
+											</h:commandButton>
 										</h:column>
 										<h:column>
 											<f:facet name="header">
@@ -70,8 +68,8 @@
 											class="form-control" value="#{KisiController.k.soyad}"></h:inputText>
                                             E-mail:<h:inputText
 											class="form-control" value="#{KisiController.k.e_posta}"></h:inputText>
-											Telefon:<h:inputText
-											class="form-control" value="#{KisiController.i.telefon}"></h:inputText>
+											Telefon:<h:inputText class="form-control"
+											value="#{KisiController.i.telefon}"></h:inputText>
                                             Adres:<h:inputTextarea
 											class="form-control" value="#{KisiController.k.adres}"></h:inputTextarea>
 

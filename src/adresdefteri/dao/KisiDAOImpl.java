@@ -90,7 +90,6 @@ public class KisiDAOImpl implements KisiDAO {
 			Kisi kisi = session.get(Kisi.class, id);
 			System.out.println(" silinecek olan kullanıcının adı : " + kisi.getAd() + "  soyadı :" + kisi.getSoyad());
 			session.delete(kisi);
-			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
