@@ -10,7 +10,7 @@ public interface KisiService {
 	
 	public List<Kisi> KisiListeleme();
 
-	public void KisiGuncelleme(int id,String name,String surname);
+	public void KisiGuncelleme(int id,String name,String surname,String e_posta,String adres);
 	
 	public void KisiSilme(int id);
 	

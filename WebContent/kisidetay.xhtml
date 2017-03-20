@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Adres Defteri</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="main_bg">
+			<div class="wrap">
+				<div class="main">
+					<h:form target="#{KisiController.KisiBul()}">
+						<div class="panel panel-info">
+							<div class="panel-heading">Kişi Bilgileri</div>
+							<div class="panel-body">
+								<h:panelGrid columns="2" width="80%">                                    
+                                            Adı:<h:inputText
+										class="form-control" value="#{KisiController.k1.ad}"></h:inputText>
+                                            Soyadı:<h:inputText
+										class="form-control" value="#{KisiController.k1.soyad}"></h:inputText>
+                                            E-mail:<h:inputText
+										class="form-control" value="#{KisiController.k1.e_posta}"></h:inputText>
+                                             Adres:<h:inputTextarea
+										class="form-control" value="#{KisiController.k1.adres}"></h:inputTextarea>
+
+								</h:panelGrid>
+								<h:panelGrid style="width: 30%" columns="2">
+									<h:commandButton class="btn btn-danger pull-right" action="#{KisiController.KisiGuncelle()}"
+										value="Kullanıcı Güncelle"></h:commandButton>
+									<h:commandButton class="btn btn-warning pull-right"
+										action="#{KisiController.KisiSil()}" value="Kullanıcı Sil"></h:commandButton>
+								</h:panelGrid>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

@@ -24,11 +24,6 @@ public class KisiServiceImpl implements KisiService{
 		return getKisiDAOImpl().KisiListeleme();
 	}
 
-	@Override
-	public void KisiGuncelleme(int id, String name, String surname) {
-		getKisiDAOImpl().KisiGuncelleme(id, name, surname);
-		
-	}
 
 	@Override
 	public void KisiSilme(int id) {
@@ -42,4 +37,9 @@ public class KisiServiceImpl implements KisiService{
 		return getKisiDAOImpl().KisiBulma(id);
 	}
 
+	@Override
+	public void KisiGuncelleme(int id, String name, String surname, String e_posta, String adres) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -13,24 +13,22 @@ import adresdefteri.util.HibernateUtil;
 
 public class KisiDAOImpl implements KisiDAO {
 
-	
-
 	/* Veritabanında yeni bir kayıt oluşturduğumuz method */
 	@Override
 	public Kisi KisiEkle(Kisi k) {
 		Session session = HibernateUtil.getHibernateSession();
-		Transaction tx=null;
+		Transaction tx = null;
 		try {
-			tx=session.beginTransaction();
+			tx = session.beginTransaction();
 			System.out.println("eklenen kullanıcının adı ve soyadı :" + k.getAd() + " " + k.getSoyad());
 			session.persist(k);
 			tx.commit();
 		} catch (HibernateException e) {
-			if (tx!= null)
+			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
 
-		}finally {
+		} finally {
 			session.close();
 		}
 		return k;
@@ -40,10 +38,10 @@ public class KisiDAOImpl implements KisiDAO {
 	@Override
 	public List<Kisi> KisiListeleme() {
 		Session session = HibernateUtil.getHibernateSession();
-		Transaction tx=null;
+		Transaction tx = null;
 		List<Kisi> kisiler = null;
 		try {
-			tx=session.beginTransaction();
+			tx = session.beginTransaction();
 			kisiler = session.createQuery("FROM Kisi").list();
 			System.out.println("Listelenen kullanıcılar ");
 			for (Iterator<Kisi> iterator = kisiler.iterator(); iterator.hasNext();) {
@@ -61,22 +59,24 @@ public class KisiDAOImpl implements KisiDAO {
 
 	/* Id sini verdiğimiz kisinin bilgilerini güncellediğimiz method */
 	@Override
-	public void KisiGuncelleme(int id, String name, String surname) {
+	public void KisiGuncelleme(int id, String name, String surname,String e_posta,String adres) {
 		Session session = HibernateUtil.getHibernateSession();
-		Transaction tx=null;
+		Transaction tx = null;
 		try {
-			tx=session.beginTransaction();
+			tx = session.beginTransaction();
 			Kisi kisi = session.get(Kisi.class, id);
 			System.out.println("güncellenecek olan kullanıcının adı :" + kisi.getAd());
 			kisi.setAd(name);
 			kisi.setSoyad(surname);
+			kisi.setE_posta(e_posta);
+			kisi.setAdres(adres);
 			session.update(kisi);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -85,7 +85,7 @@ public class KisiDAOImpl implements KisiDAO {
 	@Override
 	public void KisiSilme(int id) {
 		Session session = HibernateUtil.getHibernateSession();
-		Transaction tx=null;
+		Transaction tx = null;
 		try {
 			Kisi kisi = session.get(Kisi.class, id);
 			System.out.println(" silinecek olan kullanıcının adı : " + kisi.getAd() + "  soyadı :" + kisi.getSoyad());
@@ -95,7 +95,7 @@ public class KisiDAOImpl implements KisiDAO {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -104,8 +104,18 @@ public class KisiDAOImpl implements KisiDAO {
 	@Override
 	public Kisi KisiBulma(int id) {
 		Session session = HibernateUtil.getHibernateSession();
-		Kisi kisi = session.get(Kisi.class, id);
-		System.out.println("bulunan kullanıcının adı : " + kisi.getAd() + "  soyadı :" + kisi.getSoyad());
+		Transaction tx = null;
+		Kisi kisi = null;
+		try {
+			kisi = session.get(Kisi.class, id);
+			System.out.println("bulunan kullanıcının adı : " + kisi.getAd() + "  soyadı :" + kisi.getSoyad());
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return kisi;
 	}
 

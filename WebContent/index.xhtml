@@ -25,9 +25,9 @@
 										value="#{KisiController.kisiler}" var="Kisi">
 										<h:column>
 											<h:form>
-												<h:commandButton class="btn btn-info" value="DÜZENLE"
-													action="#">
-													<f:setPropertyActionListener value="#" target="#">
+												<h:commandButton class="btn btn-info" value="DETAY"
+													action="kisidetay">
+													<f:setPropertyActionListener value="#{Kisi.id}" target="#{KisiController.k1.id}">
 													</f:setPropertyActionListener>
 												</h:commandButton>
 											</h:form>
@@ -73,7 +73,7 @@
 											class="form-control" value="#{KisiController.k.adres}"></h:inputTextarea>
 
 											&nbsp;<h:commandButton class="btn btn-warning pull-right"
-											align="right" action="#{KisiController.KisiEkle}"
+											align="right" action="#{KisiController.KisiEkle()}"
 											value="Kaydet"></h:commandButton>
 									</h:panelGrid>
 								</div>
@@ -86,9 +86,8 @@
 								<div class="panel-body">
 									<h:panelGrid columns="3" width="100%">
                                             Kişiler:<h:selectOneMenu
-											value="#">
-											<f:selectItem itemValue="1" itemLabel="Oktay Uyar" />
-											<f:selectItem itemValue="2" itemLabel="Ahmet Uyar" />
+											value="#{KisiController.k.ad}">
+											<f:selectItems itemValue="#{KisiController.kisiler}" />	
 										</h:selectOneMenu>
 
 										<h:dataTable class="table table-striped table-bordered">
