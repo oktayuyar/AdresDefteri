@@ -30,5 +30,6 @@
 
         <!-- Names the annotated entity class -->
 		<mapping class="adresdefteri.model.Kisi"/>
+		<mapping class="adresdefteri.model.Iletisim"/>
     </session-factory>
 </hibernate-configuration>

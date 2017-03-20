@@ -6,8 +6,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import adresdefteri.dao.KisiDAO;
+import adresdefteri.dao.IletisimDAOImpl;
 import adresdefteri.dao.KisiDAOImpl;
+import adresdefteri.model.Iletisim;
 import adresdefteri.model.Kisi;
 
 @ManagedBean
@@ -16,6 +17,7 @@ public class KisiController {
 	
 	private Kisi k=new Kisi();
 	private Kisi k1=new Kisi();
+	private Iletisim i=new Iletisim();
 	private List<Kisi> kisiler = new ArrayList<Kisi>();
 
 
@@ -31,6 +33,12 @@ public class KisiController {
 	public void setK1(Kisi k1) {
 		this.k1 = k1;
 	}	
+	public Iletisim getI() {
+		return i;
+	}
+	public void setI(Iletisim i) {
+		this.i = i;
+	}
 	public List<Kisi> getKisiler() {
 		return kisiler;
 	}
@@ -38,18 +46,31 @@ public class KisiController {
 	public void KisiEkle() {	
 
 		KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
+		IletisimDAOImpl iletisimDAOImpl=new IletisimDAOImpl();
+		
+		Iletisim iletisim=new Iletisim();
 		Kisi kisi=new Kisi();
+		
+		iletisim.setTelefon(i.getTelefon());
+		
 		kisi.setAd(k.getAd());
 		kisi.setSoyad(k.getSoyad());
 		kisi.setE_posta(k.getE_posta());
 		kisi.setAdres(k.getAdres());
+		
+		kisi.getIletisim().add(iletisim);
+		iletisim.setKisi(kisi);
+		
 		kisiDAOImpl.KisiEkle(kisi);
+		iletisimDAOImpl.telefonEkle(iletisim);
 		
 		k.setAd("");
 		k.setSoyad("");
 		k.setE_posta("");
 		k.setAdres("");
-		
+		i.setTelefon("");
+		kisi=null;
+		i=null;
 		KisiListeleme();
 	}	
 	public void KisiListeleme() {	

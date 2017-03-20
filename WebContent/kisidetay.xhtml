@@ -8,8 +8,8 @@
 <h:head>
 	<title>Adres Defteri</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 </h:head>
 <h:body>
 	<h:form>
@@ -32,10 +32,11 @@
 
 								</h:panelGrid>
 								<h:panelGrid style="width: 30%" columns="2">
-									<h:commandButton class="btn btn-danger pull-right" action="#{KisiController.KisiGuncelle()}"
+									<h:commandButton class="btn btn-danger pull-right"
+										action="#{KisiController.KisiGuncelle}"
 										value="Kullanıcı Güncelle"></h:commandButton>
 									<h:commandButton class="btn btn-warning pull-right"
-										action="#{KisiController.KisiSil()}" value="Kullanıcı Sil"></h:commandButton>
+										action="#{KisiController.KisiSil}" value="Kullanıcı Sil"></h:commandButton>
 								</h:panelGrid>
 							</div>
 						</div>

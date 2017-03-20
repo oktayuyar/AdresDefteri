@@ -4,6 +4,8 @@ package adresdefteri.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
 @Entity
@@ -13,9 +15,10 @@ public class Iletisim {
 	@GeneratedValue(generator="ILT_GEN")
 	private int id;
 	
-	private String name;
-	private String surname;
-	private String phone;
+	private String telefon;
+	@ManyToOne
+	@JoinColumn(name = "kisi_id")
+	private Kisi kisi;
 	
 	public int getId() {
 		return id;
@@ -23,22 +26,16 @@ public class Iletisim {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTelefon() {
+		return telefon;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTelefon(String telefon) {
+		this.telefon = telefon;
 	}
-	public String getSurname() {
-		return surname;
+	public Kisi getKisi() {
+		return kisi;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setKisi(Kisi kisi) {
+		this.kisi = kisi;
 	}
 }

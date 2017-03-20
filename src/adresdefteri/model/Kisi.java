@@ -1,9 +1,16 @@
 package adresdefteri.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+
+import adresdefteri.model.Iletisim;
 
 @Entity
 public class Kisi {
@@ -16,6 +23,9 @@ public class Kisi {
 	private String soyad;
 	private String e_posta;
 	private String adres;
+	
+	@OneToMany(mappedBy="kisi" ,cascade=CascadeType.ALL)
+	private Collection<Iletisim>  iletisim =new ArrayList<Iletisim>();
 	
 	public int getId() {
 		return id;
@@ -46,6 +56,12 @@ public class Kisi {
 	}
 	public void setAdres(String adres) {
 		this.adres = adres;
+	}
+	public Collection<Iletisim> getIletisim() {
+		return iletisim;
+	}
+	public void setIletisim(Collection<Iletisim> iletisim) {
+		this.iletisim = iletisim;
 	}
 	@Override
 	public String toString() {

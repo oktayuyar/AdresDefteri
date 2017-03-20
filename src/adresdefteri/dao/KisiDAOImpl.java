@@ -21,7 +21,7 @@ public class KisiDAOImpl implements KisiDAO {
 		try {
 			tx = session.beginTransaction();
 			System.out.println("eklenen kullanıcının adı ve soyadı :" + k.getAd() + " " + k.getSoyad());
-			session.persist(k);
+			session.save(k);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
