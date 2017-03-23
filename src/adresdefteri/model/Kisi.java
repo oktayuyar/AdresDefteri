@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,7 +25,7 @@ public class Kisi {
 	private String e_posta;
 	private String adres;
 	
-	@OneToMany(mappedBy="kisi" ,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="kisi" ,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Collection<Iletisim>  iletisim =new ArrayList<Iletisim>();
 	
 	public int getId() {

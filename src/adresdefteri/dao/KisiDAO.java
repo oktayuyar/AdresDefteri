@@ -16,5 +16,6 @@ public interface KisiDAO {
 	public void KisiSilme(int id);
 	
 	public Kisi KisiBulma(int id);
-
+	
+	public List<String> TelListeleme(int id);
 }

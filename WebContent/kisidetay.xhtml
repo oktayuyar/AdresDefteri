@@ -22,23 +22,47 @@
 								<div class="panel panel-info">
 									<div class="panel-heading">Kişi Bilgileri</div>
 									<div class="panel-body">
-										<h:panelGrid columns="2" width="80%">                                    
+										<h:panelGrid columns="3" width="90%">
+											<h:panelGrid columns="2" width="90%">                                    
                                             Adı:<h:inputText
-												class="form-control" value="#{KisiController.k1.ad}"></h:inputText>
+													class="form-control" value="#{KisiController.k1.ad}"></h:inputText>
                                             Soyadı:<h:inputText
-												class="form-control" value="#{KisiController.k1.soyad}"></h:inputText>
+													class="form-control" value="#{KisiController.k1.soyad}"></h:inputText>
                                             E-mail:<h:inputText
-												class="form-control" value="#{KisiController.k1.e_posta}"></h:inputText>
+													class="form-control" value="#{KisiController.k1.e_posta}"></h:inputText>
                                              Adres:<h:inputTextarea
-												class="form-control" value="#{KisiController.k1.adres}"></h:inputTextarea>
+													class="form-control" value="#{KisiController.k1.adres}"></h:inputTextarea>
 
-										</h:panelGrid>
-										<h:panelGrid style="width: 30%" columns="2">
-											<h:commandButton class="btn btn-danger pull-right"
-												action="#{KisiController.KisiGuncelle}"
-												value="Kullanıcı Güncelle"></h:commandButton>
-											<h:commandButton class="btn btn-warning pull-right" 
-												action="#{KisiController.KisiSil()}" value="Kullanıcı Sil"></h:commandButton>
+											</h:panelGrid>
+											<h:panelGrid style="width: 90%">
+												<h:form
+													target="#{KisiController.TelefonListele()}">
+													<h:dataTable value="#{KisiController.telefonlar}" var="tel"
+														class="table table-striped table-bordered">
+														<h:column>
+															<f:facet name="header">
+																<h:outputLabel value="Kayıtlı Telefon Numaraları"></h:outputLabel>
+															</f:facet>#{tel.telefon}
+											</h:column>
+													</h:dataTable>
+													
+												</h:form>
+											</h:panelGrid>
+											<h:panelGrid style="width: 90%">
+											Telefon:<h:inputText class="form-control"
+													value="#{KisiController.i.telefon}"></h:inputText>
+												<h:commandButton class="btn btn-warning pull-right"
+														action="#{KisiController.TelefonEkle()}" value="Telefon Ekle"></h:commandButton>
+											</h:panelGrid>
+
+											<h:panelGrid style="width: 90%" columns="2">
+												<h:commandButton class="btn btn-info pull-right"
+													action="#{KisiController.KisiGuncelle}"
+													value="Kullanıcı Güncelle"></h:commandButton>
+												<h:commandButton class="btn btn-danger pull-right"
+													action="#{KisiController.KisiSil()}" value="Kullanıcı Sil"></h:commandButton>
+											</h:panelGrid>
+
 										</h:panelGrid>
 									</div>
 								</div>
