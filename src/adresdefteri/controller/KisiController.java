@@ -86,7 +86,7 @@ public class KisiController {
 			iletisim = null;
 		}
 		else{
-			System.err.println("boş veri bırakamazsınız.");
+			System.err.println("Verileri boş bırakmayınız!");
 		}
 		KisiListeleme();
 		return "index.xhtml?faces-redirect=true";
@@ -121,7 +121,7 @@ public class KisiController {
 			KisiDAOImpl kisiDAOImpl4 = new KisiDAOImpl();
 			kisiDAOImpl4.KisiGuncelleme(k1.getId(), k1.getAd(), k1.getSoyad(), k1.getE_posta(), k1.getAdres());
 		}else{
-			System.err.println("Boş veri giremezsiniz!");
+			System.err.println("Verileri boş bırakmayınız!");
 			return "detay.xhtml";
 		}
 
@@ -163,7 +163,7 @@ public class KisiController {
 			i.setTelefon("");
 			return "detay.xhtml?faces-redirect=true";
 		}else{
-			System.err.println("Boş veri bırakmayınız!");
+			System.err.println("Verileri boş bırakmayınız!");
 			return "detay.xhtml";
 		}
 	}
