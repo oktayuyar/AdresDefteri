@@ -90,7 +90,7 @@ public class KisiDAOImpl implements KisiDAO {
 		Session session = HibernateUtil.getHibernateSession();
 		Transaction tx = null;
 		try {
-			Kisi kisi = session.get(Kisi.class, id);
+			Kisi kisi=session.get(Kisi.class, id);
 			System.out.println(" silinecek olan kullanıcının adı : " + kisi.getAd() + "  soyadı :" + kisi.getSoyad());
 			session.delete(kisi);
 		} catch (HibernateException e) {
@@ -119,26 +119,5 @@ public class KisiDAOImpl implements KisiDAO {
 			session.close();
 		}
 		return kisi;
-	}
-
-	@Override
-	public List<String> TelListeleme(int id) {
-		Session session = HibernateUtil.getHibernateSession();
-		Transaction tx = null;
-		List<String> tel = null;
-		try {
-			//select telefon From Iletisim i,Kisi k where k.id=i.kisi_id and k.id="+id
-			System.out.println("gelen id = "+id);
-			Query query= session.createQuery("From Iletisim i where i.kisi.id= "+id);
-			tel=query.list();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-
-		} finally {
-			session.close();
-		}
-		return tel;
 	}
 }

@@ -10,6 +10,10 @@ public class KisiServiceImpl implements KisiService{
 	private KisiDAOImpl kisiDAOImpl;
 	
 
+	public void setKisiDAOImpl(KisiDAOImpl kisiDAOImpl) {
+		this.kisiDAOImpl = kisiDAOImpl;
+	}
+
 	public KisiDAOImpl getKisiDAOImpl() {
 		return kisiDAOImpl;
 	}

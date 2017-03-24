@@ -54,35 +54,42 @@ public class KisiController {
 		return telefonlar;
 	}
 
-	public void KisiEkle() {
+	public String KisiEkle() {
+		if(!k.getAd().equals("") & !k.getSoyad().equals("") 
+				& !k.getE_posta().equals("") & !k.getAdres().equals("") 
+				& !i.getTelefon().equals("")){
+			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
+			IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
 
-		KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
-		IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
+			Iletisim iletisim = new Iletisim();
+			Kisi kisi = new Kisi();
 
-		Iletisim iletisim = new Iletisim();
-		Kisi kisi = new Kisi();
+			iletisim.setTelefon(i.getTelefon());
 
-		iletisim.setTelefon(i.getTelefon());
+			kisi.setAd(k.getAd());
+			kisi.setSoyad(k.getSoyad());
+			kisi.setE_posta(k.getE_posta());
+			kisi.setAdres(k.getAdres());
 
-		kisi.setAd(k.getAd());
-		kisi.setSoyad(k.getSoyad());
-		kisi.setE_posta(k.getE_posta());
-		kisi.setAdres(k.getAdres());
+			kisi.getIletisim().add(iletisim);
+			iletisim.setKisi(kisi);
 
-		kisi.getIletisim().add(iletisim);
-		iletisim.setKisi(kisi);
+			kisiDAOImpl.KisiEkle(kisi);
 
-		kisiDAOImpl.KisiEkle(kisi);
-		iletisimDAOImpl.telefonEkle(iletisim);
+			i.setTelefon("");
+			k.setAd("");
+			k.setSoyad("");
+			k.setE_posta("");
+			k.setAdres("");
 
-		k.setAd("");
-		k.setSoyad("");
-		k.setE_posta("");
-		k.setAdres("");
-		i.setTelefon("");
-		kisi = null;
-		i = null;
+			kisi = null;
+			iletisim = null;
+		}
+		else{
+			System.err.println("boş veri bırakamazsınız.");
+		}
 		KisiListeleme();
+		return "index.xhtml?faces-redirect=true";
 	}
 
 	public void KisiListeleme() {
@@ -103,14 +110,22 @@ public class KisiController {
 
 	public String KisiSil() {
 		KisiDAOImpl kisiDAOImpl3 = new KisiDAOImpl();
+		IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
 		kisiDAOImpl3.KisiSilme(k1.getId());
 		return "index.xhtml";
 	}
 
 	public String KisiGuncelle() {
-		KisiDAOImpl kisiDAOImpl4 = new KisiDAOImpl();
-		kisiDAOImpl4.KisiGuncelleme(k1.getId(), k1.getAd(), k1.getSoyad(), k1.getE_posta(), k1.getAdres());
-		return "index.xhtml";
+		if(!k1.getAd().equals("") & !k1.getSoyad().equals("") 
+				& !k1.getE_posta().equals("") & !k1.getAdres().equals("")){
+			KisiDAOImpl kisiDAOImpl4 = new KisiDAOImpl();
+			kisiDAOImpl4.KisiGuncelleme(k1.getId(), k1.getAd(), k1.getSoyad(), k1.getE_posta(), k1.getAdres());
+		}else{
+			System.err.println("Boş veri giremezsiniz!");
+			return "detay.xhtml";
+		}
+
+		return "index.xhtml?faces-redirect=true";
 	}
 
 	public List<SelectItem> getKisiListesi() {
@@ -126,25 +141,31 @@ public class KisiController {
 	}
 
 	public void TelefonListele() {
-		KisiDAOImpl kisiDAOImpl5 = new KisiDAOImpl();
-		telefonlar = kisiDAOImpl5.TelListeleme(k1.getId());
+		IletisimDAOImpl iletisimDAOImpl5 = new IletisimDAOImpl();
+		telefonlar = iletisimDAOImpl5.TelListeleme(k1.getId());
 	}
 
-	public void TelefonEkle() {
-		KisiDAOImpl kisiDAOImpl6 = new KisiDAOImpl();
-		IletisimDAOImpl iletisimDAOImpl6 = new IletisimDAOImpl();
+	public String TelefonEkle() {
+		if(!i.getTelefon().equals("")){
+			KisiDAOImpl kisiDAOImpl6 = new KisiDAOImpl();
+			IletisimDAOImpl iletisimDAOImpl6 = new IletisimDAOImpl();
 
-		
-		Iletisim iletisim = new Iletisim();
-		Kisi kisi = kisiDAOImpl6.KisiBulma(k1.getId());
-		
-		iletisim.setTelefon(i.getTelefon());
-		
-		kisi.getIletisim().add(iletisim);
-		iletisim.setKisi(kisi);
+			Iletisim iletisim = new Iletisim();
+			Kisi kisi = kisiDAOImpl6.KisiBulma(k1.getId());
 
-		iletisimDAOImpl6.telefonEkle(iletisim);
-		i.setTelefon("");
+			iletisim.setTelefon(i.getTelefon());
+
+			kisi.getIletisim().add(iletisim);
+			iletisim.setKisi(kisi);
+
+			iletisimDAOImpl6.telefonEkle(iletisim);
+			iletisim = null;
+			i.setTelefon("");
+			return "detay.xhtml?faces-redirect=true";
+		}else{
+			System.err.println("Boş veri bırakmayınız!");
+			return "detay.xhtml";
+		}
 	}
 
 }
