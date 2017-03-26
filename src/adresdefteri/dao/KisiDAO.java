@@ -17,4 +17,6 @@ public interface KisiDAO {
 	
 	public Kisi KisiBulma(int id);
 	
+	public List<Kisi> Arama(String kelime);
+	
 }

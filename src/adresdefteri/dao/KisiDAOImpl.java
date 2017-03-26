@@ -1,6 +1,7 @@
 package adresdefteri.dao;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.hibernate.HibernateException;
@@ -119,5 +120,29 @@ public class KisiDAOImpl implements KisiDAO {
 			session.close();
 		}
 		return kisi;
+	}
+
+	@Override
+	public List<Kisi> Arama(String kelime) {
+		Session session = HibernateUtil.getHibernateSession();
+		Transaction tx = null;
+		List<Kisi> liste = new ArrayList<Kisi>();
+		System.out.println("aranacak kelime : "+kelime);
+		try {
+			tx = session.beginTransaction();
+			Query query=session.createQuery("select k from Kisi k where "
+					+ "k.ad like :kelime or k.soyad like :"
+					+ "kelime");
+			query.setParameter("kelime", "%"+kelime+"%");
+			liste=query.list();
+			
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return liste;
 	}
 }
