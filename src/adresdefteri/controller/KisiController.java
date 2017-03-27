@@ -1,16 +1,14 @@
 package adresdefteri.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.ListIterator;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
-
 import adresdefteri.dao.IletisimDAOImpl;
 import adresdefteri.dao.KisiDAOImpl;
 import adresdefteri.model.Iletisim;
@@ -25,20 +23,17 @@ public class KisiController {
 	private Iletisim i = new Iletisim();
 	private List<Kisi> kisiler = new ArrayList<Kisi>();
 	private List<String> telefonlar = new ArrayList<String>();
-	private List<Kisi> aKisiler= new ArrayList<Kisi>();
+	private List<Kisi> aKisiler = new ArrayList<Kisi>();
 	private String kelime;
 
-
 	public String KisiEkle() {
-		if(!k.getAd().equals("") & !k.getSoyad().equals("") 
-				& !k.getE_posta().equals("") & !k.getAdres().equals("") 
-				& !i.getTelefon().equals("")){
-			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
-			IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
+		KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
 
-			Iletisim iletisim = new Iletisim();
-			Kisi kisi = new Kisi();
+		Iletisim iletisim = new Iletisim();
+		Kisi kisi = new Kisi();
 
+		if (!k.getAd().equals("") & !k.getSoyad().equals("") & !k.getE_posta().equals("") & !k.getAdres().equals("")
+				& !i.getTelefon().equals("")) {
 			iletisim.setTelefon(i.getTelefon());
 			kisi.setAd(k.getAd());
 			kisi.setSoyad(k.getSoyad());
@@ -56,9 +51,13 @@ public class KisiController {
 			k.setE_posta("");
 			k.setAdres("");
 		}
-		else{
-			System.err.println("Verileri boş bırakmayınız!");
-		}
+		System.err.println("Verileri boş bırakmayınız!");
+		i.setTelefon("");
+		k.setAd("");
+		k.setSoyad("");
+		k.setE_posta("");
+		k.setAdres("");
+
 		KisiListeleme();
 		return "index.xhtml?faces-redirect=true";
 	}
@@ -78,15 +77,16 @@ public class KisiController {
 		k1.setAdres(kisi.getAdres());
 
 	}
-	
-	public void Ara(){
-		if(!kelime.equals("")){
+
+	public String Ara() {
+		if (!kelime.equals("")) {
 			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
-			aKisiler=kisiDAOImpl.Arama(kelime);
+			aKisiler = kisiDAOImpl.Arama(kelime);
+			return "index?faces-redirect=true";
+		} else {
+			aKisiler = null;
 		}
-		else{
-			System.out.println("Aranacak kelime yok");
-		}
+		return "index?faces-redirect=true";
 	}
 
 	public String KisiSil() {
@@ -97,11 +97,11 @@ public class KisiController {
 	}
 
 	public String KisiGuncelle() {
-		if(!k1.getAd().equals("") & !k1.getSoyad().equals("") 
-				& !k1.getE_posta().equals("") & !k1.getAdres().equals("")){
+		if (!k1.getAd().equals("") & !k1.getSoyad().equals("") & !k1.getE_posta().equals("")
+				& !k1.getAdres().equals("")) {
 			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
 			kisiDAOImpl.KisiGuncelleme(k1.getId(), k1.getAd(), k1.getSoyad(), k1.getE_posta(), k1.getAdres());
-		}else{
+		} else {
 			System.err.println("Verileri boş bırakmayınız!");
 			return "detay";
 		}
@@ -127,7 +127,7 @@ public class KisiController {
 	}
 
 	public String TelefonEkle() {
-		if(!i.getTelefon().equals("")){
+		if (!i.getTelefon().equals("")) {
 			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
 			IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
 
@@ -142,12 +142,20 @@ public class KisiController {
 			iletisimDAOImpl.telefonEkle(iletisim);
 			i.setTelefon("");
 			return "detay?faces-redirect=true";
-		}else{
+		} else {
 			System.err.println("Verileri boş bırakmayınız!");
 			return "detay";
 		}
 	}
-	
+
+	public void setId(int id) {
+		k1.setId(id);
+	}
+
+	public String mix(String ad, String soyad) {
+		return ad + ' ' + soyad;
+	}
+
 	public Kisi getK() {
 		return k;
 	}
@@ -179,6 +187,7 @@ public class KisiController {
 	public List<String> getTelefonlar() {
 		return telefonlar;
 	}
+
 	public String getKelime() {
 		return kelime;
 	}
@@ -194,5 +203,5 @@ public class KisiController {
 	public void setaKisiler(List<Kisi> aKisiler) {
 		this.aKisiler = aKisiler;
 	}
-	
+
 }

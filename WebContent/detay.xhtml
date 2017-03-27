@@ -20,8 +20,10 @@
 						<div class="row">
 							<h:form target="#{KisiController.KisiBul()}">
 								<div class="panel panel-info">
-									<div class="panel-heading"><a href="index.xhtml">Anasayfa</a>
-									<a href="detay.xhtml">Kişi Bilgileri</a></div>
+									<div class="panel-heading">
+										<a href="index.xhtml">Anasayfa</a> <a href="detay.xhtml">Kişi
+											Bilgileri</a>
+									</div>
 									<div class="panel-body">
 										<h:panelGrid columns="3" width="90%">
 											<h:panelGrid columns="2" width="90%">                                    
@@ -36,8 +38,7 @@
 
 											</h:panelGrid>
 											<h:panelGrid style="width: 90%">
-												<h:form
-													target="#{KisiController.TelefonListele()}">
+												<h:form target="#{KisiController.TelefonListele()}">
 													<h:dataTable value="#{KisiController.telefonlar}" var="tel"
 														class="table table-striped table-bordered">
 														<h:column>
@@ -49,10 +50,11 @@
 												</h:form>
 											</h:panelGrid>
 											<h:panelGrid style="width: 90%">
-											Telefon:<h:inputText class="form-control"  maxlength="11" 
+											Telefon:<h:inputText class="form-control phone_us" maxlength="11"
 													value="#{KisiController.i.telefon}"></h:inputText>
 												<h:commandButton class="btn btn-warning pull-right"
-														action="#{KisiController.TelefonEkle()}" value="Telefon Ekle"></h:commandButton>
+													action="#{KisiController.TelefonEkle()}"
+													value="Telefon Ekle"></h:commandButton>
 											</h:panelGrid>
 
 											<h:panelGrid style="width: 90%" columns="2">
@@ -73,5 +75,12 @@
 			</div>
 		</div>
 	</h:form>
+	<script src="resources/js/jquery-1.9.1.js"></script>
+	<script src="resources/js/jquery-ui.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="resources/input-mask/jquery.mask.min.js"></script>
+		<script type="text/javascript"
+		src="resources/input-mask/mask.js"></script>	
 </h:body>
 </html>
