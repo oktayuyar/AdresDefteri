@@ -25,19 +25,34 @@
 											Bilgileri</a>
 									</div>
 									<div class="panel-body">
-										<h:panelGrid columns="3" width="90%">
-											<h:panelGrid columns="2" width="90%">                                    
-                                            Adı:<h:inputText
-													class="form-control" value="#{KisiController.k1.ad}"></h:inputText>
+										<h:panelGrid columns="3">
+											<h:panelGrid columns="3">                                    
+                                            Adı:<h:inputText id="ad"
+													class="form-control alphaonly"
+													requiredMessage="Adı boş bırakmayınız."
+													value="#{KisiController.k1.ad}" required="true">
+												</h:inputText>
+												<h:messages for="ad" errorClass="errorMessage"></h:messages>
                                             Soyadı:<h:inputText
-													class="form-control" value="#{KisiController.k1.soyad}"></h:inputText>
+													id="soyad" requiredMessage="Soyadı boş bırakmayınız."
+													required="true" class="form-control alphaonly"
+													value="#{KisiController.k1.soyad}">
+												</h:inputText>
+												<h:messages for="soyad" errorClass="errorMessage"></h:messages>
                                             E-mail:<h:inputText
-													class="form-control" value="#{KisiController.k1.e_posta}"></h:inputText>
+													id="mail" class="form-control"
+													requiredMessage="Maili boş bırakmayınız." required="true"
+													value="#{KisiController.k1.e_posta}">
+												</h:inputText>
+												<h:messages for="mail" errorClass="errorMessage"></h:messages>
                                              Adres:<h:inputTextarea
-													class="form-control" value="#{KisiController.k1.adres}"></h:inputTextarea>
-
+													id="adres" requiredMessage="Adresi boş bırakmayınız."
+													required="true" class="form-control"
+													value="#{KisiController.k1.adres}">
+												</h:inputTextarea>
+												<h:messages for="adres" errorClass="errorMessage"></h:messages>
 											</h:panelGrid>
-											<h:panelGrid style="width: 90%">
+											<h:panelGrid>
 												<h:form target="#{KisiController.TelefonListele()}">
 													<h:dataTable value="#{KisiController.telefonlar}" var="tel"
 														class="table table-striped table-bordered">
@@ -46,12 +61,20 @@
 																<h:outputLabel value="Kayıtlı Telefon Numaraları"></h:outputLabel>
 															</f:facet>#{tel.telefon}
 														</h:column>
+														<h:column>
+															<h:commandButton class="btn btn-danger" value="SİL"
+																action="#{KisiController.TelSil()}">
+																<f:setPropertyActionListener value="#{tel.id}"
+																	target="#{KisiController.i.id}">
+																</f:setPropertyActionListener>
+															</h:commandButton>
+														</h:column>
 													</h:dataTable>
 												</h:form>
 											</h:panelGrid>
-											<h:panelGrid style="width: 90%">
-											Telefon:<h:inputText class="form-control phone_us" maxlength="11"
-													value="#{KisiController.i.telefon}"></h:inputText>
+											<h:panelGrid>
+											Telefon:<h:inputText class="form-control phone_us"
+													maxlength="11" value="#{KisiController.i.telefon}"></h:inputText>
 												<h:commandButton class="btn btn-warning pull-right"
 													action="#{KisiController.TelefonEkle()}"
 													value="Telefon Ekle"></h:commandButton>
@@ -80,7 +103,6 @@
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="resources/input-mask/jquery.mask.min.js"></script>
-		<script type="text/javascript"
-		src="resources/input-mask/mask.js"></script>	
+	<script type="text/javascript" src="resources/input-mask/mask.js"></script>
 </h:body>
 </html>

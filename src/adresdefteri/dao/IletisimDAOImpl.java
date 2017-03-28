@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import adresdefteri.model.Iletisim;
+import adresdefteri.model.Kisi;
 import adresdefteri.util.HibernateUtil;
 
 public class IletisimDAOImpl implements IletisimDAO {
@@ -37,10 +38,11 @@ public class IletisimDAOImpl implements IletisimDAO {
 		Transaction tx = null;
 		List<String> tel = null;
 		try {
-			//select telefon From Iletisim i,Kisi k where k.id=i.kisi_id and k.id="+id
-			System.out.println("gelen id = "+id);
-			Query query= session.createQuery("From Iletisim i where i.kisi.id= "+id);
-			tel=query.list();
+			// select telefon From Iletisim i,Kisi k where k.id=i.kisi_id and
+			// k.id="+id
+			System.out.println("gelen id = " + id);
+			Query query = session.createQuery("From Iletisim i where i.kisi.id= " + id);
+			tel = query.list();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -53,25 +55,23 @@ public class IletisimDAOImpl implements IletisimDAO {
 	}
 
 	@Override
-	public void telefonSilme(int id) {
+	public void TelSilme(int id) {
 		Session session = HibernateUtil.getHibernateSession();
 		Transaction tx = null;
-		List<Iletisim> tel = null;
 		try {
-			System.out.println("Telefonu silinecek olan kullanıcının id = "+id);
-			Query query= session.createQuery("From Iletisim i where i.kisi.id= "+id);
-			tel=query.list();
-			for(Iletisim t:tel){
-				session.delete(t);
-			}
+			tx=session.beginTransaction();
+			System.out.println(" silinecek tel id : " +id);
+			Iletisim i = session.get(Iletisim.class, id);
+			session.delete(i);
+			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
-
 		} finally {
 			session.close();
 		}
+
 	}
 
 }

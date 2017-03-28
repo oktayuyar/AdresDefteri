@@ -48,7 +48,7 @@
 								</h:inputText>
 							</div>
 							<div class="search_box">
-								<h:panelGrid id="search-panel" style="width:100%" layout="block">
+								<h:panelGrid id="search-panel"  style="width:100%">
 									<ul>
 										<ui:repeat var="k" value="#{KisiController.aKisiler}">
 											<li style="width: 100%;"><h:commandButton
@@ -119,7 +119,7 @@
 							<div class="panel panel-info">
 								<div class="panel-heading">Adres Defterine Kişi Ekle</div>
 								<div class="panel-body">
-									<h:panelGrid columns="3" >
+									<h:panelGrid columns="3">
                                             Adı:<h:inputText id="ad"
 											class="form-control alphaonly"
 											requiredMessage="Adı boş bırakmayınız."
@@ -138,7 +138,7 @@
 											value="#{KisiController.k.e_posta}" required="true">
 										</h:inputText>
 										<h:messages for="mail" errorClass="errorMessage"></h:messages>
-											Telefon:<h:inputText 
+											Telefon:<h:inputText  
 											 id="tel" class="form-control phone_us"
 											maxlength="11" requiredMessage="Telefonu boş bırakmayınız."
 											value="#{KisiController.i.telefon}" required="true">

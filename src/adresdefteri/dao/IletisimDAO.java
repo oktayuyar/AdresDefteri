@@ -9,6 +9,6 @@ public interface IletisimDAO {
 	public Iletisim telefonEkle(Iletisim i);
 	
 	public List<String> TelListeleme(int id);
-
-	public void telefonSilme(int id);
+	
+	public void TelSilme(int id);
 }

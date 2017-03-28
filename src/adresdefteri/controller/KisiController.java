@@ -51,12 +51,14 @@ public class KisiController {
 			k.setE_posta("");
 			k.setAdres("");
 		}
-		System.err.println("Verileri boş bırakmayınız!");
-		i.setTelefon("");
-		k.setAd("");
-		k.setSoyad("");
-		k.setE_posta("");
-		k.setAdres("");
+		else{
+			System.err.println("Verileri boş bırakmayınız!");
+			i.setTelefon("");
+			k.setAd("");
+			k.setSoyad("");
+			k.setE_posta("");
+			k.setAdres("");
+		}
 
 		KisiListeleme();
 		return "index.xhtml?faces-redirect=true";
@@ -91,9 +93,8 @@ public class KisiController {
 
 	public String KisiSil() {
 		KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
-		IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
 		kisiDAOImpl.KisiSilme(k1.getId());
-		return "index";
+		return "index?faces-redirect=true";
 	}
 
 	public String KisiGuncelle() {
@@ -101,24 +102,11 @@ public class KisiController {
 				& !k1.getAdres().equals("")) {
 			KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
 			kisiDAOImpl.KisiGuncelleme(k1.getId(), k1.getAd(), k1.getSoyad(), k1.getE_posta(), k1.getAdres());
+			return "index?faces-redirect=true";
 		} else {
 			System.err.println("Verileri boş bırakmayınız!");
-			return "detay";
+			return "detay?faces-redirect=true";
 		}
-
-		return "index?faces-redirect=true";
-	}
-
-	public List<SelectItem> getKisiListesi() {
-
-		KisiDAOImpl kisiDAOImpl = new KisiDAOImpl();
-
-		List<SelectItem> items = new ArrayList<SelectItem>();
-		List<Kisi> kisiSecim = kisiDAOImpl.KisiListeleme();
-		for (Kisi kisi : kisiSecim) {
-			items.add(new SelectItem(kisi.getId(), kisi.getAd(), kisi.getSoyad()));
-		}
-		return items;
 	}
 
 	public void TelefonListele() {
@@ -148,6 +136,13 @@ public class KisiController {
 		}
 	}
 
+	public String TelSil() {
+		IletisimDAOImpl iletisimDAOImpl = new IletisimDAOImpl();
+		iletisimDAOImpl.TelSilme(i.getId());
+		return "detay?faces-redirect=true";
+	}
+	
+	
 	public void setId(int id) {
 		k1.setId(id);
 	}
@@ -203,5 +198,4 @@ public class KisiController {
 	public void setaKisiler(List<Kisi> aKisiler) {
 		this.aKisiler = aKisiler;
 	}
-
 }

@@ -18,7 +18,7 @@ public class Iletisim {
 	private int id;
 	
 	private String telefon;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "kisi_id")
 	private Kisi kisi;
 	
