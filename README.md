@@ -21,11 +21,8 @@ Gereksinimler:
 
 *** Uzun yoldan yapmak isteseniz GNU/Linuz üzerinde /home/bilgisayarın adı/.m2/repository klasörüne giriniz ve içerisine kütüphaneleri ekleyiniz.
 
-*** Programı ilk çalıştırdığınızda direk kayıtlı kişileri listelediği için öncelikle veritabanını oluştumamız gerekli
-- Veritabanını isterseniz buradan indirip kurabilirsiniz.
+*** Programı ilk çalıştırdığınızda NullPointerException hatası almanız muhtemel olacaktır.Bunun sebebi program çalıştığında kayıtlı kişileri listeleme fonksiyomu otomatik olarak çalışmaktadır.Ancak veritabanımızda veri bulunmadığı için bu hatayı alacağız.Öncelikle veritabanını indirip kurmanızı öneriyorum.
 
-https://github.com/oktayuyar/AdresDefteri/blob/master/adresdefteri.sql
-![sql](https://github.com/oktayuyar/AdresDefteri/blob/master/adresdefteri.sql "Veritabanı")
 
 # Anasayfa
 ![png](https://github.com/oktayuyar/AdresDefteri/blob/master/images/index.png "Anasayfa")
