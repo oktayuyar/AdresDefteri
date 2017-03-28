@@ -24,7 +24,8 @@ Gereksinimler:
 *** Programı ilk çalıştırdığınızda direk kayıtlı kişileri listelediği için öncelikle veritabanını oluştumamız gerekli
 - Veritabanını isterseniz buradan indirip kurabilirsiniz.
 
-
+https://github.com/oktayuyar/AdresDefteri/blob/master/adresdefteri.sql
+![sql](https://github.com/oktayuyar/AdresDefteri/blob/master/adresdefteri.sql "Veritabanı")
 
 # Anasayfa
 ![png](https://github.com/oktayuyar/AdresDefteri/blob/master/images/index.png "Anasayfa")
