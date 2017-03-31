@@ -124,6 +124,7 @@ public class KisiDAOImpl implements KisiDAO {
 		return kisi;
 	}
 
+	/* aradığımız harf veya kelimeye göre bulunan kisilerin bilgilerini getirdiğimiz method */
 	@Override
 	public List<Kisi> Arama(String kelime) {
 		Session session = HibernateUtil.getHibernateSession();
