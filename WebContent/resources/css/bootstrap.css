@@ -6754,4 +6754,22 @@ button.close {
     display: none !important;
   }
 }
+.search_box {
+	list-style-type: none;
+	position: absolute;
+	left: 30%;
+	width: 40%;
+	background-color: #fff;
+	border-radius: 0 0 4px 4px;
+	border-top: 1px solid #f4f4f4;
+	z-index: 1000;
+	min-height: 10%;
+	max-height: 50%;
+	overflow-y: auto;
+	top: 33px;
+}
+.li_class:hover {
+	background-color: yellow !important;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
